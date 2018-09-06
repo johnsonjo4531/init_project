@@ -7,4 +7,4 @@ cpstarter () {
 }
 ```
 
-then type `cpstarter <foldername>` to import a starter template.
+then type `cpstarter <foldername>` to import a starter template where `<foldername>` is one of the following: `node`, `c++`, or `java`.
