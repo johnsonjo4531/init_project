@@ -1,4 +1,4 @@
-# Competitive programming starters
+# Competitive Programming Starters
 
 Competitive programming starter code (for bash like shells) to get you pumping out code fast for your next competition.
 
