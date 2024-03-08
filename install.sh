@@ -22,6 +22,7 @@ if [ $? -ne 0 ]; then
 	exit 1
 fi
 
+echo "Successfully installed $SCRIPT_TO_INSTALL to $INSTALL_DIR."
 # Add path addition if provided and not already in PATH
 if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]] && [ -n "$INSTALL_DIR" ]; then
 	echo 'WARNING: 
@@ -35,9 +36,7 @@ if [[ ":$PATH:" != *":$INSTALL_DIR:"* ]] && [ -n "$INSTALL_DIR" ]; then
 
 	
 Once you have followed the above instructions from the warning
-you will have successfully installed $SCRIPT_TO_INSTALL to $INSTALL_DIR. 
+you will be able to use $SCRIPT_TO_INSTALL. 
 After that please restart the terminal or run 'source ~/.bashrc' or similar file 
 for changes to take effect."'
-else
-	echo "Successfully installed $SCRIPT_TO_INSTALL to $INSTALL_DIR."
 fi
