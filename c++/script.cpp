@@ -1,14 +1,23 @@
-#include <bits/stdc++.h>
+include <bits/stdc++.h>
 using namespace std;
-// Remember \n works faster than endl as it doesn't flush.
+// Example typedefs
+typedef long long ll;
+typedef vector<int> vi;
+typedef pair<int, int> pi;
+// Example macros
+#define F first
+#define S second
+#define PB push_back
+#define MP make_pair
+// REPeat
+#define REP(i,a,b,step=1) for (int i = a; step > 0 ? i <= b : i >= b; i += step)
+// Read Until Done
+#define RUD(x) while (cin >> x)
 
 int main () {
   ios::sync_with_stdio(0);
   cin.tie(0);
   // code goes here
-  cout << "foo\n";
-  while (cin >> x) {
-    // code
-  }
+
   return 0;
 }
