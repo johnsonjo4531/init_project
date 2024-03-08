@@ -13,6 +13,9 @@ typedef pair<int, int> pi;
 #define REP(i,a,b,step) for (int i = a; step > 0 ? i <= b : i >= b; i += step)
 // Read Until Done
 #define RUD(x) while (cin >> x)
+// Read Char Until Done
+#define RCUD(x) while ((x = getchar()) != EOF)
+
 
 int main () {
   ios::sync_with_stdio(0);
