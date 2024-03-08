@@ -14,6 +14,21 @@ Git clone this repo in your home directory (with the name `competitive_programmi
 ```bash
 # Copies files from a competitive programming starter folder into the current working directory.
 cpstarter () {
-  cp -i ~/competitive_programming_starters/$1/* .
+  if [ -z "$1" ]; then
+    echo "Please choose from these options:"
+    dirs=($(basename -a ~/competitive_programming_starters/*/))
+    select opt in "${dirs[@]}"; do
+      if (( REPLY > 0 && REPLY <= ${#dirs[@]} )); then
+        cp -ri ~/competitive_programming_starters/"$opt"/* .
+        break
+      else
+        echo "Invalid option"
+      fi
+    done
+  elif [ -d ~/competitive_programming_starters/$1 ]; then
+    cp -ri ~/competitive_programming_starters/$1/* .
+  else
+    echo "Directory $1 does not exist in ~/competitive_programming_starters/"
+  fi
 }
 ```
