@@ -1,4 +1,4 @@
-include <bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 // Example typedefs
 typedef long long ll;
@@ -10,7 +10,7 @@ typedef pair<int, int> pi;
 #define PB push_back
 #define MP make_pair
 // REPeat
-#define REP(i,a,b,step=1) for (int i = a; step > 0 ? i <= b : i >= b; i += step)
+#define REP(i,a,b,step) for (int i = a; step > 0 ? i <= b : i >= b; i += step)
 // Read Until Done
 #define RUD(x) while (cin >> x)
 
