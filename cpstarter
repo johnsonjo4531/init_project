@@ -1,0 +1,44 @@
+#!/bin/bash
+
+cpstarter () {
+  display_help() {
+    SCRIPT_PATH=$(realpath $0) # Get absolute path of this script
+    BASE_DIR="${SCRIPT_PATH%/*}" # Get base dir of script (remove trailing slash and name of the script)
+    
+    echo "Usage:"
+    echo "  $(basename $0) [DIRNAME]"
+    echo ""
+    echo "Arguments:"
+    echo "  DIRNAME   The name of a directory in $BASE_DIR/"
+    echo ""
+    echo "Description:"
+    echo "  This command copies all files and directories from the specified"
+    echo "  directory (in $BASE_DIR/) to the current working directory."
+  }
+
+  SCRIPT_PATH=$(realpath $0) # Get absolute path of this script
+  BASE_DIR="${SCRIPT_PATH%/*}" # Get base dir of script (remove trailing slash and name of the script)
+  
+  dirs=($(basename -a "$BASE_DIR"/*/)) # Find directories in ~/competitive_programming_starters
+
+  if [ "$1" = "--help" ]; then
+    display_help
+  elif [[ " ${dirs[@]} " =~ " $1 " ]]; then
+    cp -ri "$BASE_DIR"/"$1"/* .
+  elif [ -z "$1" ]; then
+    echo "Please choose from the following options:"
+    select opt in "${dirs[@]}"; do
+      if [[ " ${dirs[@]} " =~ " ${opt} " ]]; then
+        cp -ri "$BASE_DIR"/"${opt}"/* .
+        break
+      else
+        echo "Invalid option. Please select a number from the list."
+      fi
+    done
+  else
+    echo "Directory '$1' does not exist in $BASE_DIR/"
+    display_help
+  fi
+}
+
+cpstarter $@

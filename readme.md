@@ -6,30 +6,16 @@ Competitive programming starter code (for bash like shells) to get you pumping o
 
 After setup (which is below) type `cpstarter <foldername>` to import a starter template from the given `<foldername>` where `<foldername>` is one of the following: `node`, `c++`, or `java`. `cpstarter <foldername>` will copy all files in the given `<foldername>` to your current working directory (the directory your terminal is in). Generally after that you just need to to put test case inputs in `in.txt` write your code in the corresponding script file and run `make` in the same directory to run your code with input.
 
+You can also run `cpstarter` without any foldername and it will allow you to select the folder to copy from in a list.
 
-## Setup
 
-Git clone this repo in your home directory (with the name `competitive_programming_starters`) and add the following code snippet to your bash profile
+## Installation
+
+Git clone this repo in somewhere on your then cd into the cloned repo and run
 
 ```bash
-# Copies files from a competitive programming starter folder into the current working directory.
-cpstarter () {
-  dirs=($(basename -a ~/competitive_programming_starters/*/))
-  
-  if [ -z "$1" ]; then
-    echo "Please choose from these options:"
-    select opt in "${dirs[@]}"; do
-      if (( REPLY > 0 && REPLY <= ${#dirs[@]} )); then
-        cp -ri ~/competitive_programming_starters/"$opt"/* .
-        break
-      else
-        echo "Invalid option"
-      fi
-    done
-  elif [[ " ${dirs[@]} " =~ " $1 " ]]; then
-    cp -ri ~/competitive_programming_starters/"$1"/* .
-  else
-    echo "Directory $1 does not exist in ~/competitive_programming_starters/"
-  fi
-}
+cd ~ # or any location really...
+git clone https://github.com/johnsonjo4531/competitive_programming_starters.git
+cd competitive_programming_starters
+bash ./install.sh
 ```
