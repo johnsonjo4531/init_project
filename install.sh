@@ -1,6 +1,6 @@
 #!/bin/bash
 # Define variables
-SCRIPT_TO_INSTALL="cpstarter"                            # name of your script, adjacent to this install script
+SCRIPT_TO_INSTALL="init_project"                            # name of your script, adjacent to this install script
 INSTALL_SCRIPT_DIR="$(dirname `realpath "$0"`)"                 # directory of the current install script
 ABSOLUTE_ADJACENT_FILE="$INSTALL_SCRIPT_DIR/$SCRIPT_TO_INSTALL" # absolute path of SCRIPT_TO_INSTALL
 INSTALL_DIR="$HOME/.local/bin"                           # user-specific directory to install the symbolic link

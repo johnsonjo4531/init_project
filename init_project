@@ -1,35 +1,54 @@
 #!/bin/bash
 
-cpstarter () {
+init_project () {
   display_help() {
     SCRIPT_PATH=$(realpath $0) # Get absolute path of this script
     BASE_DIR="${SCRIPT_PATH%/*}" # Get base dir of script (remove trailing slash and name of the script)
     
+    dirs=($(basename -a "$BASE_DIR"/*/)) # Find directories in ~/init_project
+
     echo "Usage:"
     echo "  $(basename $0) [DIRNAME]"
     echo ""
     echo "Arguments:"
     echo "  DIRNAME   The name of a directory in $BASE_DIR/"
     echo ""
+    echo "Current dirs include: $dirs"
+    echo ""
     echo "Description:"
     echo "  This command copies all files and directories from the specified"
     echo "  directory (in $BASE_DIR/) to the current working directory."
   }
 
+  display_hints() {
+    project_name="$1"
+    echo "Project $project_name created please do the following to get started"
+    echo ""
+    echo "Run the following steps in the terminal to start your project:"
+    echo "  1. cd $project_name"
+    echo "  2. make"
+  }
+
+  copy_directory() {
+    read -p "enter the name for the new project/folder: " project_name
+    cp -ri "$BASE_DIR"/"$1"/ "$project_name"
+    display_hints "$project_name"
+  }
+
   SCRIPT_PATH=$(realpath $0) # Get absolute path of this script
   BASE_DIR="${SCRIPT_PATH%/*}" # Get base dir of script (remove trailing slash and name of the script)
   
-  dirs=($(basename -a "$BASE_DIR"/*/)) # Find directories in ~/competitive_programming_starters
+  dirs=($(basename -a "$BASE_DIR"/*/)) # Find directories in ~/init_project
 
-  if [ "$1" = "--help" ]; then
+  if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
     display_help
   elif [[ " ${dirs[@]} " =~ " $1 " ]]; then
-    cp -ri "$BASE_DIR"/"$1"/* .
+    copy_directory "$1"
   elif [ -z "$1" ]; then
     echo "Please choose from the following options:"
     select opt in "${dirs[@]}"; do
       if [[ " ${dirs[@]} " =~ " ${opt} " ]]; then
-        cp -ri "$BASE_DIR"/"${opt}"/* .
+        copy_directory "${opt}"
         break
       else
         echo "Invalid option. Please select a number from the list."
@@ -38,7 +57,8 @@ cpstarter () {
   else
     echo "Directory '$1' does not exist in $BASE_DIR/"
     display_help
+    exit 1
   fi
 }
 
-cpstarter $@
+init_project $@
