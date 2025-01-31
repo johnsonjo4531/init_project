@@ -15,16 +15,19 @@ export DEBUG_COMPILER_FLAGS=-ggdb
 export RELEASE_DEBUG_FLAGS=-O2 -DNDEBUG
 
 debug:
-	$(MAKE) compile_debug -s && $(MAKE) -s run
+	$(MAKE) -s build && $(MAKE) compile_debug -s && $(MAKE) -s run
 
 release:
-	$(MAKE) compile_release -s && $(MAKE) -s run
+	$(MAKE) -s build && $(MAKE) compile_release -s && $(MAKE) -s run
 
 compile_debug:
 	g++ ${DEFAULT_COMPILER_FLAGS} -ggdb main.cpp -o ./build/main.o
 
 compile_release:
 	g++ ${DEFAULT_COMPILER_FLAGS} -O2 -DNDEBUG main.cpp -o ./build/main.o
+
+build:
+	mkdir -p ./build
 
 run:
 	./build/main.o
